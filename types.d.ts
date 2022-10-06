@@ -13,11 +13,19 @@ interface Image {
     };
 }
 
+interface Slug {
+    _type: "slug";
+    asset: {
+        _ref: string;
+        _type: "reference";
+    };
+}
+
 export interface Product extends SanityBody {
     _type: "product";
     image: Image[];
     name: string;
-    slug: string;
+    slug: Slug;
     price: number;
     details: string;
 }

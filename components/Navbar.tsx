@@ -4,7 +4,7 @@ import { AiOutlineShopping } from "react-icons/ai";
 
 const Navbar = () => {
     return (
-        <div className="sticky flex flex-row bg-black text-white py-2 px-4 items-center justify-between">
+        <div className="sticky flex flex-row bg-gradient-to-r via-black from-[#1f001f] to-[#1f001f] text-white py-2 px-4 items-center justify-between">
             <p className="text-sm font-bold text-purple-300 border border-purple-600 px-2 rounded-lg bg-[#3a0a2fb6] hover:bg-transparent duration-500 cursor-pointer">
                 <Link href="/">Home</Link>
             </p>

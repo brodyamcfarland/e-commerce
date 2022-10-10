@@ -7,10 +7,10 @@ type Props = {
     product: Product;
 };
 
-const Product = ({ product: { image, name, slug, price } }: Props) => {
+const Product = ({ product: { image, name, slug, price } }: any) => {
     return (
         <div className="max-w-[250px] max-h-[400px] mx-auto rounded-lg border border-gray-700 opacity-80 hover:opacity-100 cursor-pointer duration-500 hover:border-purple-600">
-            <Link href={`/product/${slug}`}>
+            <Link href={`/product/${slug.current}`}>
                 <div className="flex flex-col rounded-lg shadow-md">
                     <img
                         src={urlFor(image && image[0]).url()}

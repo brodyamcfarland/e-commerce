@@ -9,6 +9,7 @@ import {
     AiOutlineStar,
 } from "react-icons/ai";
 import Product from "../../components/Product";
+import { useStateContext } from "../../context/StateContext";
 
 type Props = {
     product: ProductType;
@@ -17,7 +18,9 @@ type Props = {
 
 const ProductDetails = ({ product, products }: Props) => {
     const { image, name, details, price } = product;
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState<number>(0);
+    const { decreaseQuantity, increaseQuantity, qty, onAdd } =
+        useStateContext();
 
     return (
         <div className="bg-gradient-to-r via-black from-[#1f001f] to-[#1f001f] text-white min-h-screen">
@@ -58,19 +61,25 @@ const ProductDetails = ({ product, products }: Props) => {
                     <p className="text-md font-bold py-2">${price}</p>
                     <div className="flex flex-col">
                         <h3 className="font-bold text-sm">Quantity:</h3>
-                        <p className="flex flex-row items-center justify-between border rounded-md">
-                            <div className="px-2 border-r bg-[#460946] rounded-l-md opacity-70 hover:opacity-100 duration-500 cursor-pointer">
+                        <p className="flex flex-row items-center justify-between border rounded-md select-none">
+                            <div
+                                onClick={decreaseQuantity}
+                                className="px-2 border-r bg-[#460946] rounded-l-md opacity-70 hover:opacity-100 duration-500 cursor-pointer"
+                            >
                                 <AiOutlineMinus className="h-7" />
                             </div>
-                            <span className="">0</span>
-                            <div className="px-2 border-l bg-[#460946] rounded-r-md opacity-70 hover:opacity-100 duration-500 cursor-pointer">
+                            <span className="">{qty}</span>
+                            <div
+                                onClick={increaseQuantity}
+                                className="px-2 border-l bg-[#460946] rounded-r-md opacity-70 hover:opacity-100 duration-500 cursor-pointer"
+                            >
                                 <AiOutlinePlus className="h-7" />
                             </div>
                         </p>
                     </div>
-                    <div className="flex flex-col gap-4 mt-4">
+                    <div className="flex flex-col gap-4 mt-4 select-none">
                         <button
-                            type="button"
+                            onClick={() => onAdd(product, qty)}
                             className="border rounded-md bg-[#6e0e6e] opacity-70 hover:opacity-100 duration-500"
                         >
                             Add to Cart
